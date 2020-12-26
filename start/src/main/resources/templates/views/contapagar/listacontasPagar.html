@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="www.ultraq.net.nz/thymeleaf/layout/">
+	  <head>
+	  <title> Contas a Pagar</title>
+	  <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+	  <body>
+	   <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">Lista Contas</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+         <li><a href="/listaanos">Home</a></li>
+         <li><a href="/cadastrarano" >Cadastrar Ano</a></li>
+      </ul>
+    </div>
+  </nav>
+    <div class = "container">
+    <table>
+	  <thead>
+	  <tr>
+	   <th>id</th>
+	  <th>Descrição</th>
+	  <th>Vencimento</th>
+	  <th>Valor</th>
+	  <th>Excluir</th>
+	  </tr>
+	  </thead>
+	  <tbody>	  
+	  <tr th:each="conta  : ${contas}" >
+	    <td> <span th:text = "${conta.id}"></span></td>
+	   <td> <a th:href="${(#mvc.url('CPC#detalheConta').arg(0,conta.id)).build()}"> <span th:text = "${conta.descricao}"></span></a></td>
+	   <td> <span th:text = "${#temporals.format(conta.vencimento, 'dd-MM-YYYY')}"></span></td>
+	    <td> <span th:text = "${conta.valor}"></span></td>
+	    <td> <a class="waves-effect waves-light btn" th:href="${(#mvc.url('CPC#excluirContaPagar').arg(0,conta.id)).build()}"><i class="material-icons center">delete</i></a></td>
+	  	</tr>
+	   </table>
+    </div>
+	  
+	
+	  <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	  </body>	
+</html>

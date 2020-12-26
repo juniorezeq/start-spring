@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="www.ultraq.net.nz/thymeleaf/layout/">
+	  <head>
+	  <title> Contas a Pagar</title>
+	  <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+	  <body>
+	   <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">Lista Contas</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+         <li><a href="/listaanos">Home</a></li>
+        <li><a href="/cadastrarano" >Cadastrar Ano</a></li>
+      </ul>
+    </div>
+  </nav>
+    
+
+
+
+
+<div class="container"><h5> Inserir nova Conta Mês:<a> <span th:text = "${mes.descricao}"></span></a></h5>
+ <form method=post> 
+     <div class="row">
+     Descrição: <input type="text" value="" name="descricao" >
+      <div class="input-field col s3">
+      Vencimento: <input type="date" value="" name="vencimento">
+      </div>
+       <div class="input-field col s3">
+        Valor: <input type="text" value="" name="valor" data-mask="R$ 00000.00">
+       </div>
+      </div>    
+   
+      <button class="btn-small waves-effect waves-light" type="submit" name="action">Salvar
+      <i class="material-icons right">add_circle_outline</i>
+      </button><br></br>
+   </form>
+ </div>
+ 
+ <div class="container">
+ <h5> Contas do Mês <a><span th:text = "${mes.descricao}"></span></a></h5>
+    <table>
+	  <thead>
+	  <tr><th>Descrição</th>
+	  <th>valor</th>
+	  <th>Status </th>
+	  <th>Informar Pagamento </th>
+	  <th>Desfazer Pagamento </th>
+	  <th>Excluir conta </th>
+	  </tr>
+	  </thead>
+	  <tbody>	  
+	  <tr th:each="conta  : ${contas}" >
+	    <td> <span th:text = "${conta.descricao}"></span></td>
+	    <td> <span th:text = "${conta.valor}"></span></td>
+	    <td> <span th:text = "${conta.pagamento}"></span></td>
+	    <td> <a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('MC#pagarConta').arg(0,conta.id)).build()}"><i class="material-icons center">money_off</i></a></td>
+	  	<td> <a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('MC#voltarPagamento').arg(0,conta.id)).build()}"><i class="material-icons center">monetization_on</i></a></td>
+	   <td> <a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('MC#excluirConta').arg(0,conta.id)).build()}"><i class="material-icons center">delete</i></a></td>
+	   </tr>
+	   </table>
+ 
+  </div>
+  
+      
+   <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>
+

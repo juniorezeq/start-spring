@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="www.ultraq.net.nz/thymeleaf/layout/">
+	  <head>
+	  <title> Anos Cadastrados</title>
+	  <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+	  <body>
+	   <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">Lista Contas</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/listaanos">Home</a></li>
+        <li><a href="/cadastrarano" >Cadastrar Ano</a></li>
+      </ul>
+    </div>
+  </nav>
+    <div class = "container">
+    <table>
+	  <thead>
+	  <tr>
+	  <th>Ano</th>
+	  <th>Excluir</th>
+	  </tr>
+	  </thead>
+	  <tbody>	  
+	  <tr th:each="ano  : ${anos}" >
+		<td> <a th:href="${(#mvc.url('AC#detalheAno').arg(0,ano.codigo)).build()}"> <span th:text = "${ano.num_ano}"></span></a></td>
+		  <td> <a class="waves-effect waves-light btn" th:href="${(#mvc.url('AC#excluir').arg(0,ano.codigo)).build()}"><i class="material-icons center">delete</i></a></td>
+	   </tr>
+	   </table>
+    </div>
+	  
+	  <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	  </body>	
+</html>

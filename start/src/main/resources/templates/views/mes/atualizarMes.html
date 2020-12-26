@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="www.ultraq.net.nz/thymeleaf/layout/">
+	  <head>
+	  <title> Contas a Pagar</title>
+	  <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+	  <body>
+	   <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">Lista Contas</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+         <li><a href="/listaanos">Home</a></li>
+        <li><a href="/cadastrarano" >Cadastrar Ano</a></li>
+      </ul>
+    </div>
+  </nav>
+    
+<div class="container"><h5> Editar Mês</h5>
+
+<form action="#" 
+  th:action="@{/mes/{id}(id=${mes.id})}" 
+  th:object="${mes}" 
+  method="post">
+    <label for="descricao">Descrição</label>
+    <input type="text" th:field="*{descricao}" id="descricao" placeholder="descricao">
+    <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+    <label for="num_ano">Ano</label>
+    <input type="text" th:field="*{num_ano}" id="num_ano" placeholder="num_ano" class="input-field col s3">
+    <span th:if="${#fields.hasErrors('num_ano')}" th:errors="*{num_ano}"></span> 
+    
+    <label for="num_mes">Mês</label>
+    <input type="text" th:field="*{num_mes}" id="num_mes" placeholder="num_mes" class="input-field col s3">
+    <span th:if="${#fields.hasErrors('num_mes')}" th:errors="*{num_mes}"></span> 
+   
+    <button class="btn waves-effect waves-light" type="submit" name="action">Salvar
+      <i class="material-icons right">add_circle_outline</i>
+      </button><br></br>
+</form>
+    </div> 
+      
+   <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>
+
