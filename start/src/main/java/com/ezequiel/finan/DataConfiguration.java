@@ -18,10 +18,9 @@ public class DataConfiguration {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:postgresql://localhost/postgres");
-		dataSource.setSchema("springboot");
-		dataSource.setUsername("postgres");
-		dataSource.setPassword("jrz020900");
+		dataSource.setUrl("jdbc:postgresql://ec2-54-247-122-209.eu-west-1.compute.amazonaws.com:5432/d21r4fvrcvrf0m");
+		dataSource.setUsername("uqszhpgmjjeyqv");
+		dataSource.setPassword("94876b06a217dec4c41c515830c9962dc4eeff2e025283ade7647fcd60836324");
 		return dataSource;
 	}
 
